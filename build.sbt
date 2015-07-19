@@ -6,6 +6,12 @@ version := "0.0.1"
 
 scalaVersion := "2.11.7"
 
+herokuAppName in Compile := "finatra-hello"
+
+herokuProcessTypes in Compile := Map(
+  "web" -> "target/universal/stage/bin/finatra-hello -http.port=$PORT",
+  )
+
 libraryDependencies ++= Seq(
   "com.twitter.finatra" %% "finatra-http" % "2.0.0.M2",
   "com.twitter.finatra" %% "finatra-logback" % "2.0.0.M2",
@@ -18,3 +24,6 @@ resolvers ++= Seq(
   "Twitter Maven" at "https://maven.twttr.com/",
   DefaultMavenRepository
   )
+
+enablePlugins(JavaAppPackaging)
+
