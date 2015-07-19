@@ -9,7 +9,7 @@ scalaVersion := "2.11.7"
 herokuAppName in Compile := "finatra-hello"
 
 herokuProcessTypes in Compile := Map(
-  "web" -> "target/universal/stage/bin/finatra-hello -http.port=$PORT"
+  "web" -> "target/universal/stage/bin/finatra-hello -http.port=:$PORT"
 )
 
 libraryDependencies ++= Seq(
