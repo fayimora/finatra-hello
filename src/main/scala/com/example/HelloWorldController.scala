@@ -1,13 +1,15 @@
-/**
- * Created by fayimora on 19/07/15.
- */
+package com.example
 
 import com.twitter.finagle.http.Request
 import com.twitter.finatra.http.Controller
-import com.twitter.finatra.request.QueryParam
-import com.twitter.finatra.validation.NotEmpty
+import com.twitter.finatra.request._
+import com.twitter.finatra.validation._
 
-case class HelloRequest(@NotEmpty @QueryParam name: Option[String])
+/**
+ * Created by fayimora on 21/07/15.
+ */
+
+case class HelloRequest(@RequestInject req: Request, @NotEmpty @QueryParam name: Option[String])
 
 class HelloWorldController extends Controller {
 
@@ -16,7 +18,7 @@ class HelloWorldController extends Controller {
   }
 
   get("/hello") { req: HelloRequest =>
-    info("I got here!")
+    info(s"I got here via a ${req.req.method} request!")
     val name = req.name.getOrElse("Human")
     response.ok.json(Map("msg" -> s"Hi there $name !"))
   }
