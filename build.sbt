@@ -42,8 +42,6 @@ resolvers ++= Seq(
   DefaultMavenRepository
 )
 
-javaOptions ++= Seq(
-  "-Dlog.service.output=/dev/stderr",
-  "-Dlog.access.output=/dev/stderr")
+javaOptions ++= Seq()
 
 enablePlugins(JavaAppPackaging)
