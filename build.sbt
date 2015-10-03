@@ -18,6 +18,8 @@ libraryDependencies ++= Seq(
   "com.twitter.finatra" %% "finatra-http" % "2.0.0.M2",
   "com.twitter.finatra" %% "finatra-logback" % "2.0.0.M2",
   "ch.qos.logback" % "logback-classic" % "1.1.3",
+  "org.mongodb" %% "casbah" % "2.8.2",
+  "com.twitter" %% "finagle-oauth2" % "0.1.4",
 
   "com.twitter.finatra" %% "finatra-http" % "2.0.0.M2" % "test",
   "com.twitter.inject" %% "inject-server" % "2.0.0.M2" % "test",
@@ -45,3 +47,5 @@ resolvers ++= Seq(
 javaOptions ++= Seq()
 
 enablePlugins(JavaAppPackaging)
+
+enablePlugins(DockerPlugin)
