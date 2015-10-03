@@ -17,16 +17,16 @@ object ConfigModule extends TwitterModule with Logging {
     val specified = configurationFile()
 
     val config = if (specified.nonEmpty) {
-      logger.info(s"LOADING SPECIFIED CONFIG FROM: $specified")
+      info(s"LOADING SPECIFIED CONFIG FROM: $specified")
       ConfigFactory.parseFile(new File(specified)).withFallback(ConfigFactory.load())
     } else {
-      logger.warn("LOADING DEFAULT CONFIG!")
+      warn("LOADING DEFAULT CONFIG!")
       ConfigFactory.load()
     }
 
     //Lets validate that some config exists
-    logger.info(s"Thingy: ${config.getString("example.thingy")}")
-    logger.info(s"GG: ${config.getString("gg.gg")}")
+    info(s"Thingy: ${config.getString("example.thingy")}")
+    info(s"GG: ${config.getString("gg.gg")}")
 
     install(TypesafeConfigModule.fromConfig(config))
   }
