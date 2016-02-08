@@ -26,7 +26,7 @@ class HelloWorldController @Inject()(userService: UserService,
   }
 
   get("/oauth2/token") {req: Request =>
-    issueAccessToken(Bijections.requestFromNetty(req), dataHandler) flatMap { token =>
+    issueAccessToken(req, dataHandler) flatMap { token =>
       val jsonResponse = collection.mutable.Map(
         "access_token" -> token.accessToken,
         "token_type" -> token.tokenType
@@ -50,7 +50,7 @@ class HelloWorldController @Inject()(userService: UserService,
   }
 
   get("/hello") { req: HelloRequest =>
-    authorize(Bijections.requestFromNetty(req.req), dataHandler) flatMap { authInfo =>
+    authorize(req.req, dataHandler) flatMap { authInfo =>
       info(s"I got here via a ${req.req.method} request!")
       val name = req.name.getOrElse("Human")
       Future.value(response.ok.json(Map("msg" -> s"Hi there $name !")))
@@ -66,7 +66,6 @@ class HelloWorldController @Inject()(userService: UserService,
   }
 
   post("/fetch") { req: Request =>
-    val res = userService.all
-    res.map(cres => response.ok.json(cres.contentString))
+    userService.all
   }
 }
