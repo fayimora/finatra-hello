@@ -6,6 +6,7 @@ import javax.inject.{Singleton}
 import com.twitter.finagle.oauth2.{AccessToken, AuthInfo, DataHandler}
 import com.twitter.inject.Logging
 import com.twitter.util.Future
+import org.joda.time.DateTime
 
 /**
  * Created by fayimora on 27/07/15.
@@ -13,7 +14,7 @@ import com.twitter.util.Future
 
 @Singleton
 class OAuthDataHandler extends DataHandler[User] with Logging {
-  val userAccessToken = AccessToken("token1", Some("refreshToken1"), Some("profile photos"), Some(3600), new java.util.Date())
+  def userAccessToken = AccessToken(TokenGenerator.generateToken, Some(TokenGenerator.generateToken), None, Some(3600), DateTime.now().toDate)
 
   def validateClient(clientId: String, clientSecret: String, grantType: String) = {
     debug(s" ===== validateClient($clientId, $clientSecret, $grantType)")
