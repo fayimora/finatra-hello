@@ -26,7 +26,7 @@ class HelloWorldController @Inject()(userService: UserService,
     response.ok.json("Welcome, please visit /hello")
   }
 
-  get("/oauth2/token") {req: Request =>
+  post("/oauth2/token") {req: Request =>
     issueAccessToken(req, dataHandler) flatMap { token =>
       Future(convertToken(token))
 //      val jsonResponse = collection.mutable.Map(

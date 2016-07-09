@@ -27,7 +27,7 @@ class OAuthDataHandler extends DataHandler[User] with Logging {
   }
 
   def createAccessToken(authInfo: AuthInfo[User]) = {
-    debug(" ===== createAccessToken()")
+    debug(s" ===== createAccessToken($authInfo)")
     Future.value(userAccessToken)
   }
 
