@@ -23,7 +23,7 @@ class HelloWorldController @Inject()(userService: UserService,
   extends Controller with OAuth2 with OAuthTokenInJson with OAuthErrorInJson {
 
   get("/") { request: Request =>
-    response.ok.json("Welcome, please visit /hello")
+    response.ok("Welcome, please visit /hello")
   }
 
   post("/oauth2/token") {req: Request =>
