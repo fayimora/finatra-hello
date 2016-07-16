@@ -13,8 +13,8 @@ herokuProcessTypes in Compile := Map(
 )
 
 libraryDependencies ++= Seq(
-  "com.twitter.finatra" %% "finatra-http" % "2.1.3",
-  "com.twitter.finatra" %% "finatra-slf4j" % "2.1.3",
+  "com.twitter.finatra" %% "finatra-http" % "2.1.6",
+  "com.twitter.finatra" %% "finatra-slf4j" % "2.1.6",
   "ch.qos.logback" % "logback-classic" % "1.1.3",
   "com.github.finagle" %% "finagle-oauth2" % "0.1.5",
 
