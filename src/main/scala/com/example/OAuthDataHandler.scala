@@ -14,7 +14,7 @@ import org.joda.time.DateTime
 
 @Singleton
 class OAuthDataHandler extends DataHandler[User] with Logging {
-  def userAccessToken = AccessToken(TokenGenerator.generateToken, Some(TokenGenerator.generateToken), None, Some(3600), DateTime.now().toDate)
+  val userAccessToken = AccessToken("token1", Some("refresh_token1"), None, Some(3600), DateTime.now().toDate)
 
   def validateClient(clientId: String, clientSecret: String, grantType: String) = {
     debug(s" ===== validateClient($clientId, $clientSecret, $grantType)")
@@ -54,7 +54,7 @@ class OAuthDataHandler extends DataHandler[User] with Logging {
 
   def findAuthInfoByAccessToken(accessToken: AccessToken): Future[Option[AuthInfo[User]]] = {
     debug(s" ===== findAuthInfoByAccessToken($accessToken)")
-    if(true || accessToken.token == "token1") {
+    if(accessToken.token == userAccessToken.token) {
       val u = User(10000, "username")
       Future.value(Some(AuthInfo(u, "client_id", None, None)))
     } else Future.value(None)

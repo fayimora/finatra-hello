@@ -20,8 +20,7 @@ class HelloWorldServer extends HttpServer {
       .filter[LoggingMDCFilter[Request, Response]]
       .filter[TraceIdMDCFilter[Request, Response]]
       .filter[CommonFilters]
-//      .filter[AuthFilter]
-      .add[HelloWorldController]
-//      .exceptionMapper[OAuthExceptionMapper]
+      .add[TokenController]
+      .add[AuthFilter, HelloWorldController]
   }
 }
