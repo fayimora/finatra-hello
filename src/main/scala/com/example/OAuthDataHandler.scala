@@ -54,7 +54,7 @@ class OAuthDataHandler extends DataHandler[User] with Logging {
 
   def findAuthInfoByAccessToken(accessToken: AccessToken): Future[Option[AuthInfo[User]]] = {
     debug(s" ===== findAuthInfoByAccessToken($accessToken)")
-    if(accessToken.token == "token1") {
+    if(true || accessToken.token == "token1") {
       val u = User(10000, "username")
       Future.value(Some(AuthInfo(u, "client_id", None, None)))
     } else Future.value(None)
